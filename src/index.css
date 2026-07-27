@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: Arial;
+}
+
+@utility container {
+    margin-inline: auto;
+}
