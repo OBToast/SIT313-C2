@@ -31,7 +31,7 @@ export const articles = [
   {
     name: "Initial D Crash at the last moments!",
     desc: "After a close race between the other guy in the '86, Takumi foolishly over-revved his 86 and blew his very expensive engine. However, with his quick thinking, he was able to hit the clutch and roll over the finish line in reverse first!",
-    image: "public/initialPEAK.png",
+    image: "/initialPEAK.png",
     author: "Initial D Season 5",
     rating: 5
   },
