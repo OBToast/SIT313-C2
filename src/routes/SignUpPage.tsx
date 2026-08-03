@@ -1,11 +1,20 @@
+// import my button
 import PrimaryButton from "../components/PrimaryButton";
+
+// import react's state hook
 import { useState } from "react";
+
+// import the firebase wrapper functions
 import { createAuthUserWithEmailAndPassword, createUserDocFromAuth } from "../utils/firebase";
+
+// import for navigation
 import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
+  // create a nav function for after sign up
   const navigate = useNavigate();
 
+  // store the form inputs in a state contact
   const [contact, setContact] = useState({
     displayName: "",
     email: "",
@@ -13,39 +22,61 @@ function SignUpPage() {
     confirmPassword: ""
   });
 
-  const {displayName, email, password, confirmPassword } = contact;
+  // destructure to have access to all the form variables
+  const { displayName, email, password, confirmPassword } = contact;
 
   console.log(contact);
 
+  // update form value upon any change
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     setContact((prevValue) => ({
+      // keep the previous values
       ...prevValue,
+      // update the field that caused the change
       [name]: value
     }));
   };
 
-  const handleSubmit = async(event) => {
+  // handle form submit
+  const handleSubmit = async (event) => {
+    // stop auto refresh
     event.preventDefault();
-    if (password !== confirmPassword){
-      alert("Passwords do not match!")
+    let alertMessage = ""
+    // ensure passwords match
+    if (password !== confirmPassword) {
+      alertMessage += "Passwords do not match! "
+    }
+    // ensure name > min length
+    if (displayName.length <= 3) {
+      alertMessage +="Please enter a name longer than 3 characters. "
+    }
+    if (email == "") {
+      alertMessage += "Please enter an email "
+    }
+    if (alertMessage != "")
+    {
+      alert(alertMessage);
       return;
     }
-    if (displayName.length <= 3) {
-    alert("Please enter a name longer than 3 characters");
-}
 
-    try{
-      const {user} = await createAuthUserWithEmailAndPassword(email, password)
-      await createUserDocFromAuth (user, {displayName});
+    try {
+      // create the firebase user auth
+      const { user } = await createAuthUserWithEmailAndPassword(email, password)
+      // create the firestore doc
+      await createUserDocFromAuth(user, { displayName });
+      // navigate to the login page
       navigate("/login");
     }
     catch (error) {
-            console.log('Error in sign up', error);
-        }
+      console.log('Error in sign up', error);
+      alert("Failed to sign up, email is most likely already in use");
+    }
   }
 
+  // jsx for the sign up form
+  // attach the event handlers to update form state onchange events
   return (
     <div>
       <form onSubmit={handleSubmit}>

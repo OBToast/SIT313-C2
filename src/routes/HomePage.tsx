@@ -67,8 +67,6 @@ function Articles({ articles, text }) {
   )
 }
 
-
-
 function Project({ name, desc, image }) {
   return (
     <div>
