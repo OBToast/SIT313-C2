@@ -1,3 +1,13 @@
+@import "tailwindcss";
+
 body {
     color: blue
+}
+
+.heading {
+    @apply bg-gray-400 text-black py-1 px-2 items-center justify-center;
+}
+
+.input {
+    @apply border border-black w-full text-left
 }

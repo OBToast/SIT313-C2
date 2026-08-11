@@ -7,6 +7,7 @@ import { useState } from "react";
 import HomePage from "./routes/HomePage";
 import LoginPage from "./routes/LoginPage";
 import SignUpPage from "./routes/SignUpPage";
+import PostPage from "./routes/PostPage";
 
 function App() {
   // store the current logged in user to share with other states
@@ -19,6 +20,7 @@ function App() {
       <Route path='/login' element={<LoginPage setCurrentUser={setCurrentUser} />} />
       <Route path='/signup' element={<SignUpPage />} />
       <Route path='/home' element={<HomePage />} />
+      <Route path='/post' element={<PostPage />} />
     </Routes>
 
     <Footer />

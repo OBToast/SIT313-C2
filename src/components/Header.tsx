@@ -18,7 +18,7 @@ function Header({ currentUser }) {
                 <input type="text" placeholder="Search..." className=' w-full' />
               </li>
               <li className="hover:underline">
-                <Link to="/home">Post</Link>
+                <Link to="/post">Post</Link>
               </li>
               <li className="hover:underline">
                 <Link to="/login">Login</Link>
